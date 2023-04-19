@@ -1,5 +1,6 @@
 use actix_cors::Cors;
-use actix_web::{get, http, post, web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{get, http, middleware, post, web, App, HttpResponse, HttpServer, Responder};
+use env_logger::Env;
 
 #[get("/")]
 async fn hello() -> impl Responder {
@@ -17,6 +18,7 @@ async fn manual_hello() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    env_logger::init_from_env(Env::default().default_filter_or("info"));
     HttpServer::new(|| {
         let cors = Cors::default()
             .allowed_origin("http://localhost:5173")
@@ -25,6 +27,7 @@ async fn main() -> std::io::Result<()> {
             .allowed_header(http::header::CONTENT_TYPE)
             .max_age(3600);
         App::new()
+            .wrap(middleware::Logger::default())
             .wrap(cors)
             .service(hello)
             .service(echo)
