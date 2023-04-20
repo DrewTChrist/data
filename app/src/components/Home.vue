@@ -2,7 +2,7 @@
 
 <template>
   <Bar :data="data" :options="options" />
-  <button type="button" class="btn btn-primary" @click="get">Click me!</button>
+  <n-button type="primary" @click="get">Click me!</n-button>
   <p>data: {{ state.value }}</p>
 </template>
 
@@ -18,7 +18,6 @@ import {
 } from 'chart.js'
 import { Bar } from 'vue-chartjs'
 import { reactive } from 'vue'
-import 'bootstrap/dist/css/bootstrap.css'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
