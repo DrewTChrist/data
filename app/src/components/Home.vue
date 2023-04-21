@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <Bar :data="data" :options="options" />
+  <Bar class="w-75 h-75" :data="data" :options="options" />
   <button type="button" class="btn btn-primary" @click="get">Click me!</button>
   <p>data: {{ state.value }}</p>
 </template>
@@ -32,7 +32,6 @@ export default {
     async function get() {
       const response = await fetch('http://127.0.0.1:8080/', { mode: 'cors', method: 'GET' })
       const json = await response.text()
-      console.log(json)
       state.value = json
     }
     return {
