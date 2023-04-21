@@ -1,18 +1,20 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
+<script>
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { defineComponent } from 'vue'
+import NavMenu from './components/NavMenu.vue'
+export default defineComponent({
+  components: {
+    NavMenu
+  }
+})
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+      <NavMenu />
     </div>
   </header>
-
-  <RouterView />
 </template>
 
 <style scoped></style>

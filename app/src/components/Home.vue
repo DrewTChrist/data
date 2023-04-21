@@ -2,7 +2,7 @@
 
 <template>
   <Bar :data="data" :options="options" />
-  <n-button type="primary" @click="get">Click me!</n-button>
+  <button type="button" class="btn btn-primary" @click="get">Click me!</button>
   <p>data: {{ state.value }}</p>
 </template>
 
@@ -30,7 +30,7 @@ export default {
     const state = reactive({ value: '' })
 
     async function get() {
-      const response = await fetch('http://127.0.0.1:8080/', { mode: "cors", method: 'GET' })
+      const response = await fetch('http://127.0.0.1:8080/', { mode: 'cors', method: 'GET' })
       const json = await response.text()
       console.log(json)
       state.value = json
