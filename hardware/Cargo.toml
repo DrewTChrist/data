@@ -1,12 +1,9 @@
 [package]
-name = "server"
+name = "hardware"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-actix-web = "4"
-actix-cors = "0.6"
-env_logger = "0.10"
-hardware = { path = "../hardware" }
+shared-bus = "0.2.5"
