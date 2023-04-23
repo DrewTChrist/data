@@ -1,4 +1,5 @@
 use core::marker::PhantomData;
+pub mod sensor;
 
 /// Sensor trait to implement methods
 /// that sensors need to have
@@ -20,7 +21,7 @@ pub trait Sensor<T> {
     fn read(&self) -> T;
 }
 
-/// Device is an abstraction over 
+/// Device is an abstraction over
 /// different hardware sensors and their
 /// drivers
 #[derive(Debug)]
@@ -61,7 +62,7 @@ where
 }
 
 /// The new_device macro creates a new
-/// device given a device driver that 
+/// device given a device driver that
 /// implements the Sensor trait
 #[macro_export]
 macro_rules! new_device {
