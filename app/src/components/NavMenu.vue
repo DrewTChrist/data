@@ -32,9 +32,7 @@
   <RouterView />
 </template>
 
-<script type="module">
-import Collapse from 'bootstrap/js/dist/collapse.js'
-import Dropdown from 'bootstrap/js/dist/dropdown.js'
+<script>
 import { defineComponent } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 export default defineComponent({

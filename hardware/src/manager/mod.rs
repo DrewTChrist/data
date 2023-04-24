@@ -26,7 +26,7 @@ impl DeviceManager {
         }
     }
 
-    pub fn run(&mut self) {
+    pub fn run(mut self) -> Self {
         let tx = self.sender.clone();
         self.thread = Some(thread::spawn(move || {
             let device = new_device!(MockSensor);
@@ -36,5 +36,6 @@ impl DeviceManager {
                 thread::sleep(Duration::from_millis(5000));
             }
         }));
+        self
     }
 }

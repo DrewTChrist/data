@@ -26,6 +26,7 @@ export default {
   components: {
     Bar
   },
+  props: ['contentProps'],
   setup() {
     const state = reactive({ value: '' })
 

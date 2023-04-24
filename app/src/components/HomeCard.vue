@@ -3,26 +3,28 @@
     <div class="card-body">
       <h5 class="card-title m-2">{{ title }}</h5>
       <p class="card-text m-2">{{ text }}</p>
-      <component :is="mycomponent" />
+      <component :is="contentComponent" :contentProps="contentProps" />
     </div>
   </div>
 </template>
 
 <script>
-import Home from '../components/Home.vue'
-import DeviceList from '../components/DeviceList.vue'
+import Home from './Home.vue'
+import DeviceList from './DeviceList.vue'
+import SystemStats from './SystemStats.vue'
 export default {
   name: 'HomeCard',
   components: {
     Home,
-    DeviceList
+    DeviceList,
+    SystemStats
   },
-  props: ['title', 'text', 'mycomponent'],
+  props: ['title', 'text', 'contentComponent'],
   setup(props) {
     return {}
   },
   data() {
-    return {}
+    return { contentProps: {} }
   }
 }
 </script>

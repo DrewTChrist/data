@@ -10,3 +10,4 @@ actix-web = "4"
 actix-cors = "0.6"
 env_logger = "0.10"
 hardware = { path = "../hardware" }
+systemstat = { version = "0.2.3", features = ["serde"] }
