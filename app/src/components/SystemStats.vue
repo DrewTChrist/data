@@ -40,6 +40,7 @@
             href="#list-settings"
             role="tab"
             aria-controls="list-settings"
+            @click="uptime"
             >Uptime</a
           >
         </div>
@@ -76,7 +77,7 @@
             role="tabpanel"
             aria-labelledby="list-settings-list"
           >
-            ...
+            Uptime: {{ stats.uptime }}
           </div>
         </div>
       </div>
@@ -110,11 +111,18 @@ export default {
           .then((json) => (this.stats.socketUsage = json))
           .catch((err) => console.log(err))
     }
+    function uptime() {
+        fetch('http://127.0.0.1:8080/stats/uptime', { mode: 'cors', method: 'GET' })
+          .then((res) => res.json())
+          .then((json) => (this.stats.uptime = json))
+          .catch((err) => console.log(err))
+    }
     return {
       stats,
       cpuLoad,
       memoryUsage,
-      socketUsage
+      socketUsage,
+      uptime
     }
   },
   created() {
