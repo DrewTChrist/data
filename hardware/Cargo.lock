@@ -3,6 +3,12 @@
 version = 3
 
 [[package]]
+name = "bitfield"
+version = "0.13.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "46afbd2983a5d5a7bd740ccb198caf5b82f45c40c09c0eed36052d91cb92e719"
+
+[[package]]
 name = "cfg-if"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -33,8 +39,10 @@ dependencies = [
 name = "hardware"
 version = "0.1.0"
 dependencies = [
+ "embedded-hal",
  "rand",
  "shared-bus",
+ "tsl2591",
 ]
 
 [[package]]
@@ -102,6 +110,16 @@ checksum = "05f8438a40b91c8b9531c664e9680c55b92bd78cd6809a8b45b4512b1e5765f2"
 dependencies = [
  "embedded-hal",
  "nb 0.1.3",
+]
+
+[[package]]
+name = "tsl2591"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0bfbb2716fc67fbf720a5d7ab563fc6700cc68a15a45a82ee667f710a2d960f7"
+dependencies = [
+ "bitfield",
+ "embedded-hal",
 ]
 
 [[package]]

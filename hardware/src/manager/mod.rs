@@ -1,5 +1,5 @@
 use crate::{
-    device::{sensor::MockSensor, Device},
+    device::{sensor::MockSensor, Device, MockDelay},
     new_device,
 };
 use std::sync::mpsc;
@@ -29,7 +29,7 @@ impl DeviceManager {
     pub fn run(mut self) -> Self {
         let tx = self.sender.clone();
         self.thread = Some(thread::spawn(move || {
-            let device = new_device!(MockSensor);
+            let mut device: Device<MockSensor, f32, MockDelay> = new_device!(MockSensor);
             loop {
                 //println!("{}", device.read());
                 tx.send(Message::Data(device.read())).unwrap();

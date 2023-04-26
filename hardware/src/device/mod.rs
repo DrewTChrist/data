@@ -3,7 +3,10 @@ pub mod sensor;
 
 /// Sensor trait to implement methods
 /// that sensors need to have
-pub trait Sensor<T> {
+pub trait Sensor<T, D>
+where
+    D: embedded_hal::blocking::delay::DelayMs<u8>,
+{
     /// The read method should generalize the
     /// way sensors get read
     ///
@@ -18,34 +21,53 @@ pub trait Sensor<T> {
     ///     light: f32
     /// }
     /// ```
-    fn read(&self) -> T;
+    fn read(&mut self, peripherals: &mut ExtraPeripherals<D>) -> T;
+}
+
+#[derive(Debug)]
+pub struct MockDelay;
+
+impl embedded_hal::blocking::delay::DelayMs<u8> for MockDelay {
+    fn delay_ms(&mut self, _: u8) {}
+}
+
+#[derive(Debug)]
+pub struct ExtraPeripherals<D>
+where
+    D: embedded_hal::blocking::delay::DelayMs<u8>,
+{
+    pub delay: Option<D>,
 }
 
 /// Device is an abstraction over
 /// different hardware sensors and their
 /// drivers
 #[derive(Debug)]
-pub struct Device<'a, S, T>
+pub struct Device<'a, S, T, D>
 where
-    S: Sensor<T>,
+    S: Sensor<T, D>,
+    D: embedded_hal::blocking::delay::DelayMs<u8>,
 {
     /// The name of the device
     name: &'a str,
     /// The device driver that will
     /// read/write data
     driver: S,
+    peripherals: ExtraPeripherals<D>,
     phantom: PhantomData<T>,
 }
 
-impl<'a, S, T> Device<'a, S, T>
+impl<'a, S, T, D> Device<'a, S, T, D>
 where
-    S: Sensor<T>,
+    S: Sensor<T, D>,
+    D: embedded_hal::blocking::delay::DelayMs<u8>,
 {
     /// Creates a new Device
     pub fn new(name: &'a str, driver: S) -> Self {
         Self {
             name,
             driver,
+            peripherals: ExtraPeripherals { delay: None },
             phantom: PhantomData,
         }
     }
@@ -56,8 +78,8 @@ where
     }
 
     /// Reads data from the device
-    pub fn read(&self) -> T {
-        self.driver.read()
+    pub fn read(&mut self) -> T {
+        self.driver.read(&mut self.peripherals)
     }
 }
 
