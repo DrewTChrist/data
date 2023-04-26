@@ -5,11 +5,11 @@ import HomeCard from '../components/HomeCard.vue'
 <template>
   <main>
     <div class="container">
-      <div class="row row-cols-1">
-        <div class="col m-2">
+      <div class="row row-cols-1 m-2">
+        <div class="col mb-4">
           <HomeCard title="Devices" text="Connected devices:" contentComponent="DeviceList" />
         </div>
-        <div class="col m-2">
+        <div class="col">
           <HomeCard title="Statistics" text="System statistics:" contentComponent="SystemStats" />
         </div>
       </div>

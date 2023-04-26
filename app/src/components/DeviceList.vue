@@ -1,11 +1,20 @@
 <template>
-  <ul class="list-group">
-    <li v-for="device in contentProps.devices" class="list-group-item">{{ device }}</li>
-    <!--<li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-    <li class="list-group-item">A fourth item</li>
-    <li class="list-group-item">And a fifth one</li>-->
-  </ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Protocol</th>
+        <th scope="col">Device</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"></th>
+        <td colspan="4">No devices available</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>

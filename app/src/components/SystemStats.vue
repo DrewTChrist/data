@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="row">
-      <div class="col-4">
+      <div class="col-6">
         <div class="list-group" id="list-tab" role="tablist">
           <a
             class="list-group-item list-group-item-action active"
@@ -45,7 +45,7 @@
           >
         </div>
       </div>
-      <div class="col-8">
+      <div class="col-4">
         <div class="tab-content" id="nav-tabContent">
           <div
             class="tab-pane fade show active"
@@ -100,22 +100,22 @@ export default {
         .catch((err) => console.log(err))
     }
     function memoryUsage() {
-        fetch('http://127.0.0.1:8080/stats/memory', { mode: 'cors', method: 'GET' })
-          .then((res) => res.json())
-          .then((json) => (this.stats.memoryUsage = json))
-          .catch((err) => console.log(err))
+      fetch('http://127.0.0.1:8080/stats/memory', { mode: 'cors', method: 'GET' })
+        .then((res) => res.json())
+        .then((json) => (this.stats.memoryUsage = json))
+        .catch((err) => console.log(err))
     }
     function socketUsage() {
-        fetch('http://127.0.0.1:8080/stats/socket', { mode: 'cors', method: 'GET' })
-          .then((res) => res.json())
-          .then((json) => (this.stats.socketUsage = json))
-          .catch((err) => console.log(err))
+      fetch('http://127.0.0.1:8080/stats/socket', { mode: 'cors', method: 'GET' })
+        .then((res) => res.json())
+        .then((json) => (this.stats.socketUsage = json))
+        .catch((err) => console.log(err))
     }
     function uptime() {
-        fetch('http://127.0.0.1:8080/stats/uptime', { mode: 'cors', method: 'GET' })
-          .then((res) => res.json())
-          .then((json) => (this.stats.uptime = json))
-          .catch((err) => console.log(err))
+      fetch('http://127.0.0.1:8080/stats/uptime', { mode: 'cors', method: 'GET' })
+        .then((res) => res.json())
+        .then((json) => (this.stats.uptime = json))
+        .catch((err) => console.log(err))
     }
     return {
       stats,
