@@ -1,26 +1,7 @@
 use crate::device::ExtraPeripherals;
 use crate::device::Sensor;
 use embedded_hal::blocking::i2c::{Write, WriteRead};
-use rand::Rng;
 use tsl2591;
-
-pub struct MockSensor;
-
-impl MockSensor {
-    pub fn new() -> Self {
-        Self
-    }
-}
-
-impl<D> Sensor<f32, D> for MockSensor
-where
-    D: embedded_hal::blocking::delay::DelayMs<u8>,
-{
-    fn read(&mut self, _peripherals: &mut ExtraPeripherals<D>) -> f32 {
-        let mut rng = rand::thread_rng();
-        rng.gen()
-    }
-}
 
 impl<D, I2C, I2CERR> Sensor<f32, D> for tsl2591::Driver<I2C>
 where

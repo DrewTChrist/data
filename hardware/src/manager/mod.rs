@@ -1,5 +1,5 @@
 use crate::{
-    device::{sensor::MockSensor, Device, MockDelay},
+    device::{mock::MockDelay, mock::MockSensor, Device},
     new_device,
 };
 use std::sync::mpsc;

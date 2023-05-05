@@ -1,4 +1,5 @@
 use core::marker::PhantomData;
+pub(crate) mod mock;
 pub mod sensor;
 
 /// Sensor trait to implement methods
@@ -22,13 +23,6 @@ where
     /// }
     /// ```
     fn read(&mut self, peripherals: &mut ExtraPeripherals<D>) -> T;
-}
-
-#[derive(Debug)]
-pub struct MockDelay;
-
-impl embedded_hal::blocking::delay::DelayMs<u8> for MockDelay {
-    fn delay_ms(&mut self, _: u8) {}
 }
 
 #[derive(Debug)]
